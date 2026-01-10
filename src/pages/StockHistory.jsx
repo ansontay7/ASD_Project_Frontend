@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function StockHistory() {
   const [history, setHistory] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     loadHistory();
@@ -11,13 +13,24 @@ export default function StockHistory() {
 
   const loadHistory = async () => {
     try {
+      setLoading(true);
       const res = await api.get("/stock/transaction");
       setHistory(res.data);
     } catch (err) {
       alert("Failed to load stock history");
+    } finally {
+      setLoading(false);
     }
   };
 
+  if (loading) {
+    return <h3>Loading stock history...</h3>;
+  }
+
+  if (error) {
+    return <h3 style={{ color: "red" }}>{error}</h3>;
+  }
+  
   return (
     <div>
       <h2>📊 Stock Transaction History</h2>

@@ -7,6 +7,8 @@ export default function Suppliers() {
   const [suppliers, setSuppliers] = useState([]);
   const [search, setSearch] = useState("");
   const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchSuppliers();
@@ -14,10 +16,13 @@ export default function Suppliers() {
 
   const fetchSuppliers = async () => {
     try {
+      setLoading(true);
       const res = await api.get("/suppliers");
       setSuppliers(res.data);
     } catch (err) {
       alert("Failed to load suppliers");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,6 +41,14 @@ export default function Suppliers() {
   const filteredSuppliers = suppliers.filter((s) =>
     s.supplier_name.toLowerCase().includes(search.toLowerCase())
   );
+
+  if (loading) {
+    return <h3>Loading suppliers...</h3>;
+  }
+
+  if (error) {
+    return <h3 style={{ color: "red" }}>{error}</h3>;
+  }
 
   return (
     <div>

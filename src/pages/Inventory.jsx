@@ -7,20 +7,28 @@ export default function Inventory() {
   const { user } = useAuth();
   const [items, setItems] = useState([]);
   const [lowStock, setLowStock] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchInventory();
-    fetchLowStock();
+    loadData();
   }, []);
 
-  const fetchInventory = async () => {
-    const res = await api.get("/inventory");
-    setItems(res.data);
-  };
+  const loadData = async () => {
+    try {
+      setLoading(true);
+      const [inventoryRes, lowStockRes] = await Promise.all([
+        api.get("/inventory"),
+        api.get("/inventory/low-stock"),
+      ]);
 
-  const fetchLowStock = async () => {
-    const res = await api.get("/inventory/low-stock");
-    setLowStock(res.data.items);
+      setItems(inventoryRes.data);
+      setLowStock(lowStockRes.data.items);
+    } catch (err) {
+      setError("Failed to load inventory");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const deleteItem = async (id) => {
@@ -29,6 +37,14 @@ export default function Inventory() {
     fetchInventory();
   };
 
+  if (loading) {
+    return <h3>Loading inventory...</h3>;
+  }
+
+  if (error) {
+    return <h3 style={{ color: "red" }}>{error}</h3>;
+  }
+  
   return (
     <div>
       <h2>Inventory</h2>

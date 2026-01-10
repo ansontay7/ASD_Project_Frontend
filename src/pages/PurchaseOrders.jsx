@@ -9,16 +9,33 @@ export default function PurchaseOrders() {
   const [orders, setOrders] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchPO();
   }, []);
 
   const fetchPO = async () => {
-    const res = await api.get("/purchase-orders");
-    setOrders(res.data);
+    try {
+      setLoading(true);
+      const res = await api.get("/purchase-orders");
+      setOrders(res.data);
+    } catch (err) {
+      setError("Failed to load purchase orders");
+    } finally {
+      setLoading(false);
+    }
   };
 
+  if (loading) {
+    return <h3>Loading purchase orders...</h3>;
+  }
+
+  if (error) {
+    return <h3 style={{ color: "red" }}>{error}</h3>;
+  }
+  
   return (
     <div>
       <h2>Purchase Orders</h2>
