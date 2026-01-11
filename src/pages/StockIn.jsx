@@ -33,7 +33,7 @@ export default function StockIn() {
         item_id: Number(itemId),
         transaction_type: "IN", // ✅ Stock IN
         quantity: Number(qty),
-        // reason: reason || "No reason provided",
+        reason: reason || "No reason provided",
       });
 
       alert("Stock IN successful");
@@ -47,6 +47,7 @@ export default function StockIn() {
     <div>
       <h2>Stock IN</h2>
 
+      <h4>Item*</h4>
       <form onSubmit={submitStockIn}>
         <select
           value={itemId}
@@ -62,6 +63,7 @@ export default function StockIn() {
 
         <br /><br />
 
+        <h4>Quantity*</h4>
         <input
           type="number"
           placeholder="Quantity"
@@ -72,6 +74,7 @@ export default function StockIn() {
 
         <br /><br />
 
+        <h4>Reason</h4>
         <input
           placeholder="Reason (optional)"
           value={reason}

@@ -42,6 +42,7 @@ export default function StockHistory() {
             <th>Item</th>
             <th>Type</th>
             <th>Quantity</th>
+            <th>Reason</th>
             <th>Performed By</th>
           </tr>
         </thead>
@@ -60,6 +61,7 @@ export default function StockHistory() {
                 {h.transaction_type}
               </td>
               <td>{h.quantity}</td>
+              <td>{h.reason || "—"}</td>
               <td>{h.performed_by}</td>
             </tr>
           ))}

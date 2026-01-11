@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Inventory() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [lowStock, setLowStock] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -52,6 +53,12 @@ export default function Inventory() {
       <Link to="/dashboard">
         <button>🏠 Back to Dashboard</button>
       </Link>
+
+      {user.role === "Admin" && (
+        <button onClick={() => navigate("/inventory/create")}>
+          ➕ Create Item
+        </button>
+      )}
 
       {/* Low stock alert */}
       {lowStock.length > 0 && (

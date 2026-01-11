@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Inventory from "./pages/Inventory";
 import PurchaseOrders from "./pages/PurchaseOrders";
+import CreateItem from "./pages/CreateItem";
 import CreatePO from "./pages/CreatePO";
 import ReceivePO from "./pages/ReceivePO";
 import PurchaseOrderDetails from "./pages/PurchaseOrderDetails";
@@ -24,6 +25,7 @@ function App() {
       <Route path="/inventory" element={<ProtectedRoute> <Inventory /> </ProtectedRoute>} />
       <Route path="/purchase-orders" element={<ProtectedRoute> <PurchaseOrders /> </ProtectedRoute>}/>
       <Route path="/purchase-orders/:id" element={<ProtectedRoute> <PurchaseOrderDetails /> </ProtectedRoute>}/>
+      <Route path="/inventory/create" element={<ProtectedRoute role="Admin"><CreateItem /></ProtectedRoute>}/>
       <Route path="/purchase-orders/create" element={<ProtectedRoute role="Admin"> <CreatePO /> </ProtectedRoute>}/>
       <Route path="/purchase-orders/:id/receive" element={<ProtectedRoute role="Admin"> <ReceivePO /> </ProtectedRoute>}/>
       <Route path="/stock-out" element={<ProtectedRoute role="Admin"> <StockOut /> </ProtectedRoute>}/>
