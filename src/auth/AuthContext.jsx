@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import api from "../api/axios";
 import { jwtDecode } from "jwt-decode";
 
@@ -22,6 +22,7 @@ export function AuthProvider({ children }) {
     const userData = {
       user_id: decoded.user_id,
       role: decoded.role,
+      name: decoded.name,
     };
 
     setUser(userData);
@@ -30,7 +31,55 @@ export function AuthProvider({ children }) {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
+    window.location.href = "/";
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    try {
+      const decoded = jwtDecode(token);
+
+      setUser({
+        user_id: decoded.user_id,
+        role: decoded.role,
+        name: decoded.name,
+      });
+
+      const expiryTime = decoded.exp * 1000 - Date.now();
+
+      if (expiryTime <= 0) {
+        logout();
+      } else {
+        const timeout = setTimeout(logout, expiryTime);
+        return () => clearTimeout(timeout);
+      }
+    } catch {
+      logout();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!user) return;
+
+    let timer;
+
+    const resetTimer = () => {
+      clearTimeout(timer);
+      timer = setTimeout(logout, 10 * 60 * 1000); // 10 minutes
+    };
+
+    const events = ["mousemove", "keydown", "click", "scroll"];
+
+    events.forEach(event => window.addEventListener(event, resetTimer));
+    resetTimer();
+
+    return () => {
+      clearTimeout(timer);
+      events.forEach(event => window.removeEventListener(event, resetTimer));
+    };
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

@@ -11,6 +11,8 @@ export default function PurchaseOrders() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [statusFilter, setStatusFilter] = useState(""); // e.g., "PENDING", "RECEIVED"
+  const [supplierFilter, setSupplierFilter] = useState("");
 
   useEffect(() => {
     fetchPO();
@@ -36,6 +38,13 @@ export default function PurchaseOrders() {
     return <h3 style={{ color: "red" }}>{error}</h3>;
   }
   
+  const filteredOrders = orders.filter(po => {
+  return (
+    (statusFilter === "" || po.status === statusFilter) &&
+    (supplierFilter === "" || po.supplier_name.toLowerCase().includes(supplierFilter.toLowerCase()))
+    );
+  });
+
   return (
     <div>
       <h2>Purchase Orders</h2>
@@ -50,6 +59,30 @@ export default function PurchaseOrders() {
         </button>
       )}
 
+      <div style={{ marginTop: "20px", marginBottom: "20px" }}>
+        <label>
+          Status:{" "}
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="">All</option>
+            <option value="PENDING">PENDING</option>
+            <option value="APPROVED">RECEIVED</option>
+          </select>
+        </label>
+
+        <label style={{ marginLeft: "20px" }}>
+          Supplier:{" "}
+          <input
+            type="text"
+            placeholder="Search supplier..."
+            value={supplierFilter}
+            onChange={(e) => setSupplierFilter(e.target.value)}
+          />
+        </label>
+      </div>
+
       <table border="1" cellPadding="8">
         <thead>
           <tr>
@@ -62,31 +95,37 @@ export default function PurchaseOrders() {
         </thead>
 
         <tbody>
-          {orders.map(po => (
-            <tr key={po.po_id}>
-              <td>{po.po_id}</td>
-              <td>{po.supplier_name}</td>
-              <td>{new Date(po.created_at).toLocaleString()}</td>
-              <td>{po.status}</td>
-              <td>
-                <button onClick={() => navigate(`/purchase-orders/${po.po_id}`)}>
-                  View
-                </button>
-
-                {user.role === "Admin" && po.status !== "RECEIVED" && (
-                  <button
-                    onClick={() =>
-                      navigate(`/purchase-orders/${po.po_id}/receive`)
-                    }
-                  >
-                    Receive
-                  </button>
-                )}
-              </td>
+          {filteredOrders.length === 0 ? (
+            <tr>
+              <td colSpan="5" align="center">No purchase orders found</td>
             </tr>
-          ))}
+          ) : (
+            filteredOrders.map(po => (
+              <tr key={po.po_id}>
+                <td>{po.po_id}</td>
+                <td>{po.supplier_name}</td>
+                <td>{new Date(po.created_at).toLocaleString()}</td>
+                <td>{po.status}</td>
+                <td>
+                  <button onClick={() => navigate(`/purchase-orders/${po.po_id}`)}>
+                    View
+                  </button>
+
+                  {user.role === "Admin" && po.status !== "RECEIVED" && (
+                    <button
+                      onClick={() =>
+                        navigate(`/purchase-orders/${po.po_id}/receive`)
+                      }
+                    >
+                      Receive
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
-      </table>
+        </table>
     </div>
   );
 }

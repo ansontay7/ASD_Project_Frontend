@@ -40,7 +40,7 @@ export default function StockOut() {
         item_id: Number(itemId),
         transaction_type: "OUT", // Stock out transaction
         quantity: Number(qty),
-        //reason: reason || "No reason provided", // Default reason if none provided
+        reason: reason || "No reason provided", // Default reason if none provided
       });
 
       alert("Stock OUT successful");
@@ -54,6 +54,7 @@ export default function StockOut() {
     <div>
       <h2>Stock OUT</h2>
 
+      <h4>Item*</h4>
       <form onSubmit={submitStockOut}>
         <select
           value={itemId}
@@ -69,6 +70,7 @@ export default function StockOut() {
 
         <br /><br />
 
+        <h4>Quantity*</h4>
         <input
           type="number"
           placeholder="Quantity"
@@ -78,10 +80,14 @@ export default function StockOut() {
 
         <br /><br />
 
-        <input
+        <h4>Reason</h4>
+        <textarea
           placeholder="Reason (optional)"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
+          rows={4}
+          cols={50}
+          style={{ resize: "vertical" }}
         />
 
         <br /><br />

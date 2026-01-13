@@ -75,10 +75,13 @@ export default function StockIn() {
         <br /><br />
 
         <h4>Reason</h4>
-        <input
+        <textarea
           placeholder="Reason (optional)"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
+          rows={4}
+          cols={50}
+          style={{ resize: "vertical" }}
         />
 
         <br /><br />

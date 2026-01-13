@@ -1,29 +1,48 @@
-import { useAuth } from '../auth/AuthContext';
-import { Link } from 'react-router-dom';
+import { useAuth } from "../auth/AuthContext";
+import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+export default function Sidebar() {
   const { user, logout } = useAuth();
-
+  
   return (
-    <div className="sidebar">
-      <h3>Inventory System</h3>
+    <div>
+      <h2>Invetory Management</h2>
+      <p>Welcome , ({user.role})</p>
 
-      <Link to="/dashboard">Dashboard</Link>
-      <Link to="/inventory">Inventory</Link>
-      <Link to="/purchase-orders">Purchase Orders</Link>
+      <hr />
+      <button onClick={logout}>Logout</button>
+
+      <Link to="/inventory">
+        <button>View Inventory</button>
+      </Link>
+      <Link to="/stock-out">
+          <button>Stock OUT</button>
+      </Link>
 
       {user.role === "Admin" && (
         <>
-          <Link to="/receive-po">Receive PO</Link>
-          <Link to="/stock-out">Stock OUT</Link>
-          <Link to="/stock-history">Stock Transactions</Link>
-          <Link to="/suppliers">Suppliers</Link>
+          
+          <Link to="/stock-in">
+            <button>Stock IN</button>
+          </Link>
+
+          <Link to="/stock-history">
+            <button>View Stock Transaction</button>
+          </Link>
+
+          <Link to="/purchase-orders">
+            <button>View Purchase Orders</button>
+          </Link>
+
+          <Link to="/purchase-orders/create">
+            <button>Create Purchase Order</button>
+          </Link>
+
+          <Link to="/suppliers">
+            <button>Supplier Management</button>
+          </Link>
         </>
       )}
-
-      <button onClick={logout}>Logout</button>
     </div>
   );
-};
-
-export default Sidebar;
+}

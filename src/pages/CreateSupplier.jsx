@@ -40,6 +40,7 @@ export default function CreateSupplier() {
     <div>
       <h2>Create Supplier</h2>
 
+      <h4>Supplier Name*</h4>
       <form onSubmit={submitSupplier}>
         <input
           name="supplier_name"
@@ -50,6 +51,7 @@ export default function CreateSupplier() {
 
         <br /><br />
 
+        <h4>Contact Person*</h4>
         <input
           name="contact_person"
           placeholder="Contact Person"
@@ -59,6 +61,7 @@ export default function CreateSupplier() {
 
         <br /><br />
 
+        <h4>Email*</h4>
         <input
           name="email"
           placeholder="Email"
@@ -68,6 +71,7 @@ export default function CreateSupplier() {
 
         <br /><br />
 
+        <h4>Phone Number*</h4>
         <input
           name="phone"
           type="Number"
