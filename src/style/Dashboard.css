@@ -131,7 +131,7 @@
 /* =================== */
 /* Tablet view (769px–1024px) */
 /* =================== */
-@media (max-width: 769px) and (min-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 769px) {
   .dashboard-page {
     padding: 1.5rem;
   }
@@ -182,11 +182,13 @@
     flex-direction: column;
     gap: 12px;
     max-width: 100%;
+    align-items: center;
   }
 
   .dashboard-stat-box {
     width: 100%;
     padding: 15px;
+    align-items: center;
   }
 
   .dashboard-lowstock-alert {
@@ -215,5 +217,10 @@
     margin-top: 10px;
     width: 100%;
     box-sizing: border-box;
+  }
+  
+  .dashboard-piechart-container {
+    width: 80%;
+    max-width: 700px;
   }
 }

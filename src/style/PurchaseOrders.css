@@ -151,4 +151,18 @@
     flex-wrap: wrap;
     gap: 5px;
   }
+
+  .purchase-orders-table {
+    font-size: 0.85rem;
+  }
+
+  .purchase-orders-table th,
+  .purchase-orders-table td {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .purchase-orders-buttons button {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
 }

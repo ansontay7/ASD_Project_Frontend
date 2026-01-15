@@ -160,4 +160,18 @@
     align-items: flex-start;
     gap: 10px;
   }
+
+  .suppliers-table {
+    font-size: 0.85rem;
+  }
+
+  .suppliers-table th,
+  .suppliers-table td {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .btn-create {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
 }

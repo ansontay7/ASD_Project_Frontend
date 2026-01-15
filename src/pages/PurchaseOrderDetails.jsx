@@ -24,7 +24,7 @@ export default function PurchaseOrderDetails() {
     }
   };
 
-  if (loading) return <p className="Loading">Loading PO...</p>;
+  if (loading) return <p className="loading">Loading PO...</p>;
 
   return (
     <div className="po-page">

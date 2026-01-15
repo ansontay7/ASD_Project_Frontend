@@ -10,6 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -20,17 +21,26 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email.trim() || !password.trim()) {
+      setError("Please enter both email and password.");
+      return;
+    }
+
     setLoading(true);
+    setError("");
 
     try {
       await login(email, password);
       alert("Login success");
     } catch {
-      alert("Invalid credentials");
+      setError("Invalid credentials");
     } finally {
       setLoading(false);
     }
   };
+
+  const isDisabled = loading || !email.trim() || !password.trim();
 
   return (
     <div className="login-page">
@@ -59,7 +69,9 @@ export default function Login() {
               disabled={loading}
             />
 
-            <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
+            {error && <div className="login-error">{error}</div>}
+
+            <button type="submit" disabled={isDisabled}>{loading ? "Logging in..." : "Login"}</button>
           </form>
         </div>
       </div>

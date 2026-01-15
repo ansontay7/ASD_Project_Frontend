@@ -196,6 +196,10 @@
     gap: 10px;
   }
 
+  .page-header h2 {
+    font-size: 25px;
+  }
+  
   .filter-bar {
     flex-direction: column;
     gap: 5px;
@@ -207,5 +211,14 @@
 
   .fliter-end-date {
     font-size: 15px;
+  }
+
+  .table-card table {
+    font-size: 0.85rem; /* slightly smaller */
+  }
+
+  .table-card th,
+  .table-card td {
+    padding: 0.5rem 0.6rem;
   }
 }

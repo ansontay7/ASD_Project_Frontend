@@ -180,4 +180,18 @@
     flex-wrap: wrap;
     gap: 5px;
   }
+
+  .inventory-table {
+    font-size: 0.85rem;
+  }
+
+  .inventory-table th,
+  .inventory-table td {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .inventory-buttons button {
+    font-size: 15px;
+    padding: 0.6rem 1rem;
+  }
 }

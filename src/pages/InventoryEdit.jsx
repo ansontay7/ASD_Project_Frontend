@@ -39,7 +39,7 @@ export default function InventoryEdit() {
     }
   };
 
-  if (loading) return <h3>Loading item...</h3>;
+  if (loading) return <h3 className="loading">Loading item...</h3>;
   if (error) return <h3 style={{ color: "red" }}>{error}</h3>;
 
   return (

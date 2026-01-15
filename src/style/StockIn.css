@@ -7,6 +7,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 /* Main container */
@@ -163,7 +165,7 @@
   }
 
   .stock-in-container {
-    max-width: 100%;
+    max-width: 90%;
     padding: 20px;
     margin: 0 15px;
     border-radius: 6px;
