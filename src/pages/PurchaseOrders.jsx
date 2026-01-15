@@ -66,7 +66,7 @@ export default function PurchaseOrders() {
         >
           <option value="">All</option>
           <option value="PENDING">PENDING</option>
-          <option value="APPROVED">RECEIVED</option>
+          <option value="RECEIVED">RECEIVED</option>
         </select>
 
         <input
