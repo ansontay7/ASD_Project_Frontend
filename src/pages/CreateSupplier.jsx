@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
+import "../style/CreateSupplier.css";
 
 export default function CreateSupplier() {
   const [form, setForm] = useState({
@@ -37,59 +38,69 @@ export default function CreateSupplier() {
   };
 
   return (
-    <div>
-      <h2>Create Supplier</h2>
+    <div className="create-supplier-page">
+      <div className="create-supplier-container">
 
-      <h4>Supplier Name*</h4>
-      <form onSubmit={submitSupplier}>
-        <input
-          name="supplier_name"
-          placeholder="Supplier Name *"
-          value={form.supplier_name}
-          onChange={handleChange}
-        />
+        <div className="create-supplier-header">
+          <h2>Create Supplier</h2>
+        </div>
 
-        <br /><br />
+        <div className="create-supplier-form">
+          <form onSubmit={submitSupplier}>
 
-        <h4>Contact Person*</h4>
-        <input
-          name="contact_person"
-          placeholder="Contact Person"
-          value={form.contact_person}
-          onChange={handleChange}
-        />
+            <div className="form-group">
+              <h4>Supplier Name*</h4>
+              <input
+                name="supplier_name"
+                placeholder="Supplier Name *"
+                value={form.supplier_name}
+                onChange={handleChange}
+              />
+            </div>
 
-        <br /><br />
+            <div className="form-group">
+              <h4>Contact Person*</h4>
+              <input
+                name="contact_person"
+                placeholder="Contact Person"
+                value={form.contact_person}
+                onChange={handleChange}
+              />
+            </div>
 
-        <h4>Email*</h4>
-        <input
-          name="email"
-          placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-        />
+            <div className="form-group">
+              <h4>Email*</h4>
+              <input
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+              />
+            </div>
 
-        <br /><br />
+            <div className="form-group">
+              <h4>Phone Number*</h4>
+              <input
+                name="phone"
+                type="Number"
+                placeholder="Phone"
+                value={form.phone}
+                onChange={handleChange}
+              />
+            </div>
 
-        <h4>Phone Number*</h4>
-        <input
-          name="phone"
-          type="Number"
-          placeholder="Phone"
-          value={form.phone}
-          onChange={handleChange}
-        />
+            <div className="form-actions">
+              <button type="submit">Create Supplier</button>
+            </div>
+          </form>
+        </div>
 
-        <br /><br />
-
-        <button type="submit">➕ Create Supplier</button>
-      </form>
-
-      <br />
-
-      <Link to="/suppliers">
-        <button>📋 Back to Supplier List</button>
-      </Link>
+        <div className="navigation-section">
+          <Link to="/suppliers">
+            <button>Back to Supplier List</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../api/axios";
 import { useState } from "react";
+import "../style/ReceivePO.css";
 
 export default function ReceivePO() {
   const { id } = useParams();
@@ -26,11 +27,15 @@ export default function ReceivePO() {
   };
 
   return (
-    <div>
-      <h2>Receive Purchase Order #{id}</h2>
-      <button onClick={receivePO} disabled={receiving}>
-        ✅ Confirm Receive
-      </button>
+    <div className="receive-po-container">
+      <h2 className="receive-po-title">Receive Purchase Order #{id}</h2>
+
+      <div className="receive-po-buttons">
+        <Link to="/purchase-orders">
+          <button className="btn back-btn">Back to Purchase Order</button>
+        </Link>
+        <button className="btn confirm-btn" onClick={receivePO} disabled={receiving}>✅ Confirm Receive</button>
+      </div>
     </div>
   );
 }

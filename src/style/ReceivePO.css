@@ -1,0 +1,115 @@
+/* Container */
+.receive-po-page {
+  min-height: 100vh;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+.receive-po-container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Header */
+.receive-po-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #111827;
+}
+
+/* Navigation buttons */
+.receive-po-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.receive-po-buttons .btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+/* Back button */
+.back-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #cbd5e1;
+}
+
+.back-btn:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Confirm button */
+.confirm-btn {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.confirm-btn:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+.confirm-btn:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .receive-po-container {
+    max-width: 90%;
+    padding: 25px;
+  }
+
+  .receive-po-title {
+    font-size: 24px;
+  }
+
+  .receive-po-buttons .btn {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .receive-po-container {
+    padding: 20px;
+    margin: 0 15px;
+  }
+
+  .receive-po-title {
+    font-size: 22px;
+  }
+
+  .receive-po-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .receive-po-buttons .btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}

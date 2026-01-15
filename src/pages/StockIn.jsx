@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../auth/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import "../style/StockIn.css";
+import Navbar from "../components/Navbar";
 
 export default function StockIn() {
   const [items, setItems] = useState([]);
@@ -44,56 +46,68 @@ export default function StockIn() {
   };
 
   return (
-    <div>
-      <h2>Stock IN</h2>
+    <><Navbar />
+    <div className="stock-in-page">
+      <div className="stock-in-container">
 
-      <h4>Item*</h4>
-      <form onSubmit={submitStockIn}>
-        <select
-          value={itemId}
-          onChange={(e) => setItemId(e.target.value)}
-        >
-          <option value="">-- Select Item --</option>
-          {items.map((i) => (
-            <option key={i.item_id} value={i.item_id}>
-              {i.item_name}
-            </option>
-          ))}
-        </select>
+        <div className="stock-in-header">
+          <h2>Stock IN</h2>
+        </div>
 
-        <br /><br />
+        <div className="stock-in-form">
+          <form onSubmit={submitStockIn}>
 
-        <h4>Quantity*</h4>
-        <input
-          type="number"
-          placeholder="Quantity"
-          min="1"
-          value={qty}
-          onChange={(e) => setQty(e.target.value)}
-        />
+            <div className="form-group">
+              <h4>Item*</h4>
+              <select
+                value={itemId}
+                onChange={(e) => setItemId(e.target.value)}
+              >
+                <option value="">-- Select Item --</option>
+                {items.map((i) => (
+                  <option key={i.item_id} value={i.item_id}>
+                    {i.item_name}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-        <br /><br />
+            <div className="form-group">
+              <h4>Quantity*</h4>
+              <input
+                type="number"
+                placeholder="Quantity"
+                min="1"
+                value={qty}
+                onChange={(e) => setQty(e.target.value)}
+              />
+            </div>
 
-        <h4>Reason</h4>
-        <textarea
-          placeholder="Reason (optional)"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          rows={4}
-          cols={50}
-          style={{ resize: "vertical" }}
-        />
+            <div className="form-group">
+              <h4>Reason</h4>
+              <textarea
+                placeholder="Reason (optional)"
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                rows={4}
+                cols={50}
+                style={{ resize: "vertical" }}
+              />
+            </div>
 
-        <br /><br />
+            <div className="form-actions">
+              <button type="submit">⬆ Stock IN</button>
+            </div>
+            </form>
+          </div>
 
-        <button type="submit">⬆ Stock IN</button>
-      </form>
-
-      <br />
-
-      <Link to="/dashboard">
-        <button>🏠 Back to Dashboard</button>
-      </Link>
-    </div>
+          <div className="navigation-section">
+            <Link to="/dashboard">
+              <button>Back to Dashboard</button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

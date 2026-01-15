@@ -1,0 +1,161 @@
+/* ============================= */
+/* Base styles (Desktop default) */
+/* ============================= */
+
+.create-item-page {
+  min-height: 100vh;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.create-item-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+.create-item-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.create-item-header h2 {
+  color: #111827;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.create-item-form-wrapper {
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.form-group h4 {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.form-actions {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.form-actions button {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.form-actions button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+.navigation-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.navigation-section button {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #374151;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navigation-section button:hover {
+  background-color: #f3f4f6;
+}
+
+/* ============================= */
+/* Tablet view (601px - 1024px) */
+/* ============================= */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .create-item-container {
+    max-width: 90%;
+    padding: 25px;
+  }
+
+  .create-item-header h2 {
+    font-size: 24px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+    padding: 9px 11px;
+  }
+
+  .form-actions button,
+  .navigation-section button {
+    font-size: 14px;
+    padding: 10px 22px;
+  }
+}
+
+/* ============================= */
+/* Mobile view (≤600px) */
+/* ============================= */
+@media (max-width: 600px) {
+  .create-item-container {
+    padding: 20px;
+    margin: 15px;
+  }
+
+  .create-item-header h2 {
+    font-size: 22px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 13px;
+    padding: 9px 10px;
+  }
+
+  .form-actions button,
+  .navigation-section button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 0;
+  }
+}

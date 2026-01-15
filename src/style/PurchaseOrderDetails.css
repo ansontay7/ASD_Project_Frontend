@@ -1,0 +1,156 @@
+/* Page container */
+.po-page {
+  min-height: 100vh;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+/* Main container */
+.po-container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.po-header h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #111827;
+  text-align: center;
+}
+
+/* Items section */
+.po-items-section h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #111827;
+}
+
+.po-items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.po-items-table th,
+.po-items-table td {
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.po-items-table th {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Actions buttons */
+.po-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.po-actions .btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+/* Back button */
+.back-btn {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #cbd5e1;
+}
+
+.back-btn:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Receive PO button */
+.confirm-btn {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.confirm-btn:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Loading text */
+.loading-text {
+  text-align: center;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* Responsive adjustments */
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .po-container {
+    max-width: 90%;
+    padding: 25px;
+  }
+
+  .po-header h2 {
+    font-size: 24px;
+  }
+
+  .po-actions .btn {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+
+  .po-items-table th,
+  .po-items-table td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .po-container {
+    padding: 20px;
+    margin: 0 15px;
+  }
+
+  .po-header h2 {
+    font-size: 22px;
+  }
+
+  .po-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .po-actions .btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .po-items-table th,
+  .po-items-table td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}

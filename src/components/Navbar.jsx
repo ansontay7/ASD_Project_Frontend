@@ -1,66 +1,36 @@
 import { useAuth } from "../auth/AuthContext";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "10px 20px",
-        backgroundColor: "#333",
-        color: "#fff",
-      }}
-    >
+    <nav className="navbar">
       {/* Left side: App name */}
-      <div>
-        <h2 style={{ margin: 0, fontSize: "18px" }}>Inventory Management</h2>
-        {user && <small>Welcome, ({user.name})</small>}
+      <div className="navbar-left">
+        <h2 className="navbar-title">Inventory Management</h2>
       </div>
 
       {/* Right side: Navigation links */}
-      <div style={{ display: "flex", gap: "10px" }}>
-        {user && (
-          <>
-            <Link to="/dashboard" style={{ color: "#fff", textDecoration: "none" }}>
-              Dashboard
-            </Link>
-            <Link to="/inventory" style={{ color: "#fff", textDecoration: "none" }}>
-              Inventory
-            </Link>
-            
-            <Link to="/stock-out">
-          <button>Stock OUT</button>
-            </Link>
+      {user && (
+        <div className="navbar-right">
+          <Link to="/dashboard" className="nav-link">Dashboard</Link>
+          <Link to="/inventory" className="nav-link">Inventory</Link>
+          <Link to="/stock-out" className="nav-link">Stock OUT</Link>
 
-      {user.role === "Admin" && (
-        <>
-          
-          <Link to="/stock-in">
-            <button>Stock IN</button>
-          </Link>
+          {user.role === "Admin" && (
+            <>
+              <Link to="/stock-in" className="nav-link">Stock IN</Link>
+              <Link to="/stock-history" className="nav-link">Stock Transaction</Link>
+              <Link to="/purchase-orders" className="nav-link">Purchase Orders</Link>
+              <Link to="/suppliers" className="nav-link">Supplier Management</Link>
+            </>
+          )}
 
-          <Link to="/stock-history">
-            <button>Stock Transaction</button>
-          </Link>
-
-          <Link to="/purchase-orders">
-            <button>Purchase Orders</button>
-          </Link>
-
-          <Link to="/suppliers">
-            <button>Supplier Management</button>
-          </Link>
-        </>
+          <button onClick={logout} className="nav-button logout-button">Logout</button>
+        </div>
       )}
-      <button onClick={logout} style={{ marginLeft: "10px" }}>
-              Logout</button>
-          </>
-        )}
-      </div>
     </nav>
   );
 }

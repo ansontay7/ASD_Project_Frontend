@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
+import "../style/CreateItem.css";
 
 export default function CreateItem() {
   const navigate = useNavigate();
@@ -11,7 +12,6 @@ export default function CreateItem() {
   const [unitPrice, setUnitPrice] = useState("");
   const [reorderLevel, setReorderLevel] = useState("");
   const [supplierId, setSupplierId] = useState("");
-
   const [suppliers, setSuppliers] = useState([]);
 
   /* Load suppliers for dropdown */
@@ -54,85 +54,94 @@ export default function CreateItem() {
   };
 
   return (
-    <div>
-      <h2>Create Inventory Item</h2>
+    <div className="create-item-page">
+      <div className="create-item-container">
+      <div className="create-item-header">
+        <h2>Create Inventory Item</h2>
+      </div>
 
-      <h4>Item Name</h4>
-      <form onSubmit={submitItem}>
-        <input
-          placeholder="Item Name *"
-          value={itemName}
-          onChange={(e) => setItemName(e.target.value)}
-        />
+      <div className="create-item-form-wrapper">
+        <form onSubmit={submitItem}>
 
-        <br /><br />
+          <div className="form-group">
+            <h4>Item Name</h4>
+            <input
+              placeholder="Item Name *"
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+            />
+            </div>
 
-        <h4>Category</h4>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">-- Select Category --</option>
-          <option value="Raw Material">Raw Material</option>
-          <option value="Finished Goods">Finished Goods</option>
-        </select>
+          <div className="form-group">
+            <h4>Category</h4>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="">-- Select Category --</option>
+              <option value="Raw Material">Raw Material</option>
+              <option value="Finished Goods">Finished Goods</option>
+            </select>
+          </div>
 
-        <br /><br />
+          <div className="form-group">
+            <h4>Quantity</h4>
+            <input
+              type="number"
+              min="0"
+              step="1"
+              placeholder="Initial Quantity"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          </div>
 
-        <h4>Quantity</h4>
-        <input
-          type="number"
-          min="0"
-          step="1"
-          placeholder="Initial Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
+          <div className="form-group">
+            <h4>Unit Price</h4>
+            <input
+              type="number"
+              step="0.10"
+              placeholder="Unit Price *"
+              value={unitPrice}
+              onChange={(e) => setUnitPrice(e.target.value)}
+            />
+          </div>
 
-        <br /><br />
+          <div className="form-group">
+            <h4>Reorder Quantity</h4>
+            <input
+              type="number"
+              min="0"
+              placeholder="Reorder Level *"
+              value={reorderLevel}
+              onChange={(e) => setReorderLevel(e.target.value)}
+            />
+          </div>
 
-        <h4>Unit Price</h4>
-        <input
-          type="number"
-          step="0.10"
-          placeholder="Unit Price *"
-          value={unitPrice}
-          onChange={(e) => setUnitPrice(e.target.value)}
-        />
+          <div className="form-group">
+            <h4>Supplier</h4>
+            <select
+              value={supplierId}
+              onChange={(e) => setSupplierId(e.target.value)}
+            >
+              <option value="">-- Supplier --</option>
+              {suppliers.map((s) => (
+                <option key={s.supplier_id} value={s.supplier_id}>
+                  {s.supplier_name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <br /><br />
+          <div className="form-actions">
+            <button type="submit">Create Item</button>
+          </div>
+        </form>
+      </div>
 
-        <h4>Reorder Quantity</h4>
-        <input
-          type="number"
-          min="0"
-          placeholder="Reorder Level *"
-          value={reorderLevel}
-          onChange={(e) => setReorderLevel(e.target.value)}
-        />
-
-        <br /><br />
-
-        <h4>Supplier</h4>
-        <select
-          value={supplierId}
-          onChange={(e) => setSupplierId(e.target.value)}
-        >
-          <option value="">-- Supplier --</option>
-          {suppliers.map((s) => (
-            <option key={s.supplier_id} value={s.supplier_id}>
-              {s.supplier_name}
-            </option>
-          ))}
-        </select>
-
-        <br /><br />
-
-        <button type="submit">➕ Create Item</button>
-      </form>
-
-      <br />
-
-      <Link to="/inventory">
-        <button>⬅ Back to Inventory</button>
-      </Link>
+      <div className="navigation-section">
+        <Link to="/inventory">
+          <button>⬅ Back to Inventory</button>
+        </Link>
+      </div>
     </div>
+  </div>
   );
 }

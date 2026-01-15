@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import "../style/StockHistory.css";
 
 export default function StockHistory() {
   const [history, setHistory] = useState([]);
@@ -20,7 +22,7 @@ export default function StockHistory() {
       const res = await api.get("/stock/transaction");
       setHistory(res.data);
     } catch (err) {
-      alert("Failed to load stock history");
+      setError("Failed to load stock history");
     } finally {
       setLoading(false);
     }
@@ -38,7 +40,7 @@ export default function StockHistory() {
   });
 
   if (loading) {
-    return <h3>Loading stock history...</h3>;
+    return <h3 className="loading">Loading stock history...</h3>;
   }
 
   if (error) {
@@ -46,82 +48,72 @@ export default function StockHistory() {
   }
   
   return (
-    <div>
-      <h2>📊 Stock Transaction History</h2>
+    <><Navbar />
+    <div className="stock-history-container">
 
-      <div style={{ marginBottom: "15px" }}>
+      <div className="page-header">
+        <h2>Stock Transaction History</h2>
+      </div>
+
+      <div className="filter-bar">
         <input
           type="text"
           placeholder="Search by item..."
           value={searchItem}
           onChange={(e) => setSearchItem(e.target.value)}
-          style={{ marginRight: "10px" }}
         />
-        <label>
-          From:{" "}
-          <input
-            type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
-            style={{ marginRight: "10px" }}
-          />
-        </label>
-        <label>
-          To:{" "}
-          <input
-            type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-          />
-        </label>
+        <h4 className="fliter-start-date">Start Date</h4>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+        <h4 className="fliter-end-date">End Date</h4>
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
       </div>
 
-      <table border="1" cellPadding="8">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Item</th>
-            <th>Type</th>
-            <th>Quantity</th>
-            <th>Reason</th>
-            <th>Performed By</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredHistory.length === 0 ? (
+      <div className="table-card">
+        <table>
+          <thead>
             <tr>
-              <td colSpan="6" align="center">
-                No transactions found
-              </td>
+              <th>Date</th>
+              <th>Item</th>
+              <th>Type</th>
+              <th>Quantity</th>
+              <th>Reason</th>
+              <th>Performed By</th>
             </tr>
-          ) : (
-            filteredHistory.map((h) => (
-              <tr key={h.transaction_id}>
-                <td>{new Date(h.created_at).toLocaleString()}</td>
-                <td>{h.item_name}</td>
-                <td
-                  style={{
-                    color: h.transaction_type === "IN" ? "green" : "red",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {h.transaction_type}
+          </thead>
+
+          <tbody>
+            {filteredHistory.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="empty">
+                  No transactions found
                 </td>
-                <td>{h.quantity}</td>
-                <td>{h.reason || "—"}</td>
-                <td>{h.performed_by}</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
-
-      <br />
-
-      <Link to="/dashboard">
-        <button>🏠 Back to Dashboard</button>
-      </Link>
+            ) : (
+              filteredHistory.map((h) => (
+                <tr key={h.transaction_id}>
+                  <td>{new Date(h.created_at).toLocaleString()}</td>
+                  <td>{h.item_name}</td>
+                  <td className={h.transaction_type === "IN" ? "type-in" : "type-out"}>
+                    {h.transaction_type}
+                  </td>
+                  <td>{h.quantity}</td>
+                  <td>{h.reason || "—"}</td>
+                  <td>{h.performed_by}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
+  </>
   );
 }

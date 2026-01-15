@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { Bar, Pie } from "react-chartjs-2";
 import api from "../api/axios";
+import Navbar from "../components/Navbar";
+import { useAuth } from "../auth/AuthContext";
+import "../style/Dashboard.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
@@ -10,7 +13,7 @@ export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { user } = useAuth();
   const [pieType, setPieType] = useState("value"); // "value" or "quantity"
 
   useEffect(() => {
@@ -36,8 +39,8 @@ export default function Dashboard() {
     }
   };
 
-  if (loading) return <h3>Loading dashboard...</h3>;
-  if (error) return <h3 style={{ color: "red" }}>{error}</h3>;
+  if (loading) return <h3 className="loading">Loading dashboard...</h3>;
+  if (error) return <h3 className="dashboard-error">{error}</h3>;
 
   // Low stock and stats
   const lowStockItems = inventory.filter(item => item.quantity < item.reorder_level);
@@ -95,20 +98,23 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      <h2>Dashboard</h2>
+    <><Navbar />
+    <div className="dashboard-page">
+      <h2 className="dashboard-title">Dashboard</h2>
 
       {/* Stats */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        <div style={{ padding: "20px", backgroundColor: "#f2f2f2", flex: 1 }}>
+      <div className="dashboard-stats">
+        <div className="dashboard-stat-box">
           <h3>Low Stock Items</h3>
           <p>{lowStockItems.length}</p>
         </div>
-        <div style={{ padding: "20px", backgroundColor: "#f2f2f2", flex: 1 }}>
+        {user?.role !== "User" && (
+        <div className="dashboard-stat-box">
           <h3>Total Inventory Value (RM)</h3>
           <p>{totalInventoryValue.toFixed(2)}</p>
         </div>
-        <div style={{ padding: "20px", backgroundColor: "#f2f2f2", flex: 1 }}>
+        )}
+        <div className="dashboard-stat-box">
           <h3>Total Items</h3>
           <p>{totalItems}</p>
         </div>
@@ -116,10 +122,10 @@ export default function Dashboard() {
 
       {/* Low Stock Alerts */}
       {lowStockItems.length > 0 && (
-        <div style={{ marginTop: "40px" }}>
+        <div className="dashboard-lowstock-alert">
           <h3>⚠ Low Stock Alerts</h3>
-          <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead style={{ backgroundColor: "#ffcccc" }}>
+          <table className="dashboard-table">
+            <thead>
               <tr>
                 <th>Item Name</th>
                 <th>Current Quantity</th>
@@ -129,11 +135,11 @@ export default function Dashboard() {
             </thead>
             <tbody>
               {lowStockItems.map(item => (
-                <tr key={item.item_id} style={{ backgroundColor: "#ffe6e6" }}>
+                <tr key={item.item_id}>
                   <td>{item.item_name}</td>
                   <td>{item.quantity}</td>
                   <td>{item.reorder_level}</td>
-                  <td style={{ color: "red", fontWeight: "bold" }}>⚠ Low Stock</td>
+                  <td className="lowstock-status">⚠ Low Stock</td>
                 </tr>
               ))}
             </tbody>
@@ -142,19 +148,21 @@ export default function Dashboard() {
       )}
 
       {/* Bar Chart */}
-      <div style={{ marginTop: "40px", maxWidth: "900px" }}>
+      <div className="dashboard-chart-container">
         <h3>Stock by Item</h3>
         <Bar data={barData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
       </div>
 
       {/* Pie Chart with dropdown */}
-      <div style={{ marginTop: "40px", maxWidth: "600px" }}>
+      <div className="dashboard-piechart-container">
         <h3>📊 Stock by Category</h3>
 
         <label>
           View as:{" "}
           <select value={pieType} onChange={e => setPieType(e.target.value)}>
-            <option value="value">Stock Value (RM)</option>
+            {user?.role !== "User" && (
+              <option value="value">Stock Value (RM)</option>
+            )}
             <option value="quantity">Stock Quantity</option>
           </select>
         </label>
@@ -163,10 +171,10 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Stock Movements */}
-      <div style={{ marginTop: "40px" }}>
+      <div className="dashboard-lowstock-alert">
         <h3>🕒 Recent Stock Movements (Last 10)</h3>
-        <table border="1" cellPadding="8" style={{ borderCollapse: "collapse", width: "100%" }}>
-          <thead style={{ backgroundColor: "#d9edf7" }}>
+        <table className="dashboard-table">
+          <thead>
             <tr>
               <th>Date</th>
               <th>Item Name</th>
@@ -184,7 +192,7 @@ export default function Dashboard() {
                 <tr key={tx.transaction_id}>
                   <td>{new Date(tx.created_at).toLocaleString()}</td>
                   <td>{tx.item_name}</td>
-                  <td style={{ color: tx.transaction_type === "IN" ? "green" : "red", fontWeight: "bold" }}>
+                  <td className={tx.transaction_type === "IN" ? "tx-in" : "tx-out"}>
                     {tx.transaction_type}
                   </td>
                   <td>{tx.quantity}</td>
@@ -195,5 +203,6 @@ export default function Dashboard() {
         </table>
       </div>
     </div>
+  </>
   );
 }

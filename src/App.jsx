@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./auth/ProtectedRoute";
@@ -21,10 +20,7 @@ import EditSupplier from "./pages/EditSupplier";
 
 function App() {
   return (
-      <div>
-      {/* Sidebar always visible */}
-        <Navbar />
-
+  <div>
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>}/>
@@ -42,7 +38,7 @@ function App() {
       <Route path="/suppliers/create" element={<ProtectedRoute role="Admin"> <CreateSupplier /> </ProtectedRoute>}/>
       <Route path="/suppliers/:id/edit" element={<ProtectedRoute role="Admin"><EditSupplier /></ProtectedRoute>} />
     </Routes>
-    </div>
+  </div>
   );
 }
 

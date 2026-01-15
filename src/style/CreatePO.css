@@ -1,0 +1,257 @@
+/* ============================= */
+/* Base styles (Desktop default) */
+/* ============================= */
+
+.create-po-page {
+  min-height: 100vh;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.create-po-container {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+.create-po-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.create-po-header h2 {
+  color: #111827;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Navigation */
+.navigation-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navigation-section button {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #374151;
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navigation-section button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Supplier section */
+.supplier-section {
+  margin-bottom: 25px;
+}
+
+.supplier-section select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.supplier-section select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+/* Items section */
+.items-section h4 {
+  color: #111827;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Item card */
+.item-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 15px;
+}
+
+.item-card .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.item-card p {
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.item-card input,
+.item-card select {
+  padding: 9px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item-card input:focus,
+.item-card select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+/* Item actions */
+.item-actions {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.remove-item-btn {
+  background: transparent;
+  border: 1px solid #dc2626;
+  color: #dc2626;
+  padding: 6px 14px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.remove-item-btn:hover {
+  background-color: #fee2e2;
+}
+
+/* Action buttons */
+.actions-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.actions-section button {
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.actions-section button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Submit section */
+.submit-section {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.submit-section button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.submit-section button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* ============================= */
+/* Tablet view (769px - 1024px) */
+/* ============================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .create-po-container {
+    max-width: 90%;
+    padding: 25px;
+  }
+
+  .create-po-header h2 {
+    font-size: 24px;
+  }
+
+  .navigation-section button,
+  .remove-item-btn,
+  .actions-section button,
+  .submit-section button {
+    padding: 9px 20px;
+    font-size: 13px;
+  }
+
+  .supplier-section select,
+  .item-card input,
+  .item-card select {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .item-card {
+    padding: 16px;
+  }
+}
+
+/* ============================= */
+/* Mobile view (≤768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .create-po-container {
+    padding: 20px;
+    margin: 0 15px;
+  }
+
+  .create-po-header h2 {
+    font-size: 22px;
+  }
+
+  .navigation-section button,
+  .remove-item-btn,
+  .actions-section button,
+  .submit-section button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .supplier-section select,
+  .item-card input,
+  .item-card select {
+    font-size: 13px;
+    padding: 9px 10px;
+  }
+
+  .item-card {
+    padding: 14px;
+  }
+
+  .item-actions {
+    text-align: center;
+  }
+}

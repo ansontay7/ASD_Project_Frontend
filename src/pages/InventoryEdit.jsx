@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import "../style/InventoryEdit.css";
 
 export default function InventoryEdit() {
   const { id } = useParams();
@@ -42,36 +43,85 @@ export default function InventoryEdit() {
   if (error) return <h3 style={{ color: "red" }}>{error}</h3>;
 
   return (
-    <div>
-      <h2>Edit Inventory Item</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name: </label>
-          <input name="item_name" value={item.item_name} onChange={handleChange} />
+    <div className="inventory-edit-page">
+      <div className="inventory-edit-container">
+
+        <div className="inventory-edit-header">
+          <h2>Edit Inventory Item</h2>
         </div>
-        <div>
-          <label>Quantity: </label>
-          <input type="number" name="quantity" value={item.quantity} onChange={handleChange} />
-        </div>
-        <div>
-          <label>Reorder Level: </label>
-          <input type="number" name="reorder_level" value={item.reorder_level} onChange={handleChange} />
-        </div>
-        <div>
-            <label>Category: </label>
-            <input name="category" value={item.category} onChange={handleChange} />
-        </div>
-        <div>
-            <label>Unit Price: </label>
-            <input type="number" name="unit_price" value={item.unit_price} onChange={handleChange} />
-        </div>
-        <div>
-            <label>Supplier ID: </label>
-            <input type="number" name="supplier_id" value={item.supplier_id} onChange={handleChange} />
-        </div>
-        <button type="submit">💾 Save</button>
-        <button type="button" onClick={() => navigate("/inventory")}>Cancel</button>
-      </form>
+
+        <form className="inventory-edit-form" onSubmit={handleSubmit}>
+
+          <div className="form-group">
+            <h4>Name</h4>
+            <input
+              name="item_name"
+              value={item.item_name}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Quantity</h4>
+            <input
+              type="number"
+              name="quantity"
+              value={item.quantity}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Reorder Level</h4>
+            <input
+              type="number"
+              name="reorder_level"
+              value={item.reorder_level}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Category</h4>
+            <input
+              name="category"
+              value={item.category || ""}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Unit Price</h4>
+            <input
+              type="number"
+              name="unit_price"
+              value={item.unit_price || ""}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Supplier ID</h4>
+            <input
+              type="number"
+              name="supplier_id"
+              value={item.supplier_id || ""}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-actions">
+            <button type="submit">💾 Save</button>
+          </div>
+
+          <div className="navigation-section">
+            <button type="button" onClick={() => navigate("/inventory")}>
+              ⬅ Back to Inventory
+            </button>
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import Navbar from "../components/Navbar";
+import "../style/Suppliers.css";
 
 export default function Suppliers() {
   const [suppliers, setSuppliers] = useState([]);
@@ -20,7 +22,7 @@ export default function Suppliers() {
       const res = await api.get("/suppliers");
       setSuppliers(res.data);
     } catch (err) {
-      alert("Failed to load suppliers");
+      setError("Failed to load suppliers");
     } finally {
       setLoading(false);
     }
@@ -43,7 +45,7 @@ export default function Suppliers() {
   );
 
   if (loading) {
-    return <h3>Loading suppliers...</h3>;
+    return <h3 className="loading">Loading suppliers...</h3>;
   }
 
   if (error) {
@@ -51,73 +53,71 @@ export default function Suppliers() {
   }
 
   return (
-    <div>
-      <h2>Suppliers</h2>
+    <><Navbar />
+    <div className="suppliers-page">
+      <div className="suppliers-header">
+        <h2>Suppliers</h2>
+
+        {/* Admin create */}
+        {user?.role === "Admin" && (
+          <Link to="/suppliers/create">
+            <button className="btn-create">Create Supplier</button>
+          </Link>
+        )}
+      </div>
 
       {/* Search */}
-      <input
-        placeholder="Search supplier..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="suppliers-filters">
+        <input
+          placeholder="Search supplier..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-      <br /><br />
-
-      {/* Admin create */}
-      {user?.role === "Admin" && (
-        <Link to="/suppliers/create">
-          <button>➕ Create Supplier</button>
-        </Link>
-      )}
-
-      <br /><br />
-
-      <table border="1" cellPadding="8">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Supplier Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            {user?.role === "Admin" && <th>Actions</th>}
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredSuppliers.length === 0 ? (
+      <div className="suppliers-table">
+        <table>
+          <thead>
             <tr>
-              <td colSpan="5" align="center">No suppliers found</td>
+              <th>ID</th>
+              <th>Supplier Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              {user?.role === "Admin" && <th>Actions</th>}
             </tr>
-          ) : (
-            filteredSuppliers.map((s) => (
-              <tr key={s.supplier_id}>
-                <td>{s.supplier_id}</td>
-                <td>{s.supplier_name}</td>
-                <td>{s.email || "-"}</td>
-                <td>{s.phone || "-"}</td>
+          </thead>
 
-                {user?.role === "Admin" && (
-                  <td>
-                    <Link to={`/suppliers/${s.supplier_id}/edit`}>
-                      <button>✏ Edit</button>
-                    </Link>
-                    &nbsp;
-                    <button onClick={() => deleteSupplier(s.supplier_id)}>
-                      🗑 Delete
-                    </button>
-                  </td>
-                )}
+          <tbody>
+            {filteredSuppliers.length === 0 ? (
+              <tr>
+                <td colSpan={user?.role === "Admin" ? 5 : 4} className="empty">No suppliers found</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              filteredSuppliers.map((s) => (
+                <tr key={s.supplier_id}>
+                  <td>{s.supplier_id}</td>
+                  <td>{s.supplier_name}</td>
+                  <td>{s.email || "-"}</td>
+                  <td>{s.phone || "-"}</td>
 
-      <br />
+                  {user?.role === "Admin" && (
+                    <td>
+                      <Link to={`/suppliers/${s.supplier_id}/edit`}>
+                        <button className="btn-edit">✏ Edit</button>
+                      </Link>
 
-      <Link to="/dashboard">
-        <button>🏠 Back to Dashboard</button>
-      </Link>
+                      <button className="btn-delete" onClick={() => deleteSupplier(s.supplier_id)}>
+                        🗑 Delete
+                      </button>
+                    </td>
+                  )}
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
+  </>
   );
 }

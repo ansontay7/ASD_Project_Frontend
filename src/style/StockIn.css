@@ -1,0 +1,195 @@
+/* Page background */
+.stock-in-page {
+  min-height: 100vh;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Main container */
+.stock-in-container {
+  max-width: 650px;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+/* Header */
+.stock-in-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.stock-in-header h2 {
+  color: #111827;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Form wrapper */
+.stock-in-form {
+  width: 100%;
+}
+
+/* Form groups */
+.stock-in-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.stock-in-form h4 {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Inputs, selects, textarea */
+.stock-in-form input,
+.stock-in-form select,
+.stock-in-form textarea {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stock-in-form input:focus,
+.stock-in-form select:focus,
+.stock-in-form textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Form actions (submit button) */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.form-actions button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Navigation section (back button) */
+.navigation-section {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.navigation-section button {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #374151;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navigation-section button:hover {
+  background-color: #f3f4f6;
+}
+
+/* ============================= */
+/* Tablet view (769px - 1024px) */
+/* ============================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .stock-in-page {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+
+  .stock-in-container {
+    max-width: 500px;
+    padding: 25px;
+    margin: 0 20px;
+  }
+
+  .stock-in-header h2 {
+    font-size: 24px;
+  }
+
+  .stock-in-form input,
+  .stock-in-form select,
+  .stock-in-form textarea {
+    font-size: 13px;
+    padding: 9px 11px;
+  }
+
+  .form-actions button {
+    font-size: 14px;
+    padding: 11px 24px;
+  }
+
+  .navigation-section button {
+    font-size: 13px;
+    padding: 9px 20px;
+  }
+}
+
+/* ============================= */
+/* Mobile view (up to 768px)     */
+/* ============================= */
+@media (max-width: 768px) {
+  .stock-in-page {
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+
+  .stock-in-container {
+    max-width: 100%;
+    padding: 20px;
+    margin: 0 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .stock-in-header h2 {
+    font-size: 20px;
+  }
+
+  .stock-in-form input,
+  .stock-in-form select,
+  .stock-in-form textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .form-actions button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  .navigation-section button {
+    width: 100%;
+    font-size: 14px;
+    padding: 12px 0;
+  }
+}

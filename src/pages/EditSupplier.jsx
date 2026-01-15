@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import "../style/EditSupplier.css";
 
 export default function EditSupplier() {
   const { id } = useParams();
@@ -43,39 +44,54 @@ export default function EditSupplier() {
   };
 
   return (
-    <div>
-      <h2>Edit Supplier</h2>
+    <div className="edit-supplier-page">
+      <div className="edit-supplier-container">
 
-      <form onSubmit={updateSupplier}>
-        <input
-          placeholder="Supplier Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <br /><br />
+        <div className="edit-supplier-header">
+          <h2>Edit Supplier</h2>
+        </div>
 
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <br /><br />
+        <form className="edit-supplier-form" onSubmit={updateSupplier}>
 
-        <input
-          placeholder="Phone"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <br /><br />
+          <div className="form-group">
+            <h4>Supplier Name</h4>
+            <input
+              placeholder="Supplier Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
 
-        <button type="submit">💾 Update Supplier</button>
-      </form>
+          <div className="form-group">
+            <h4>Email</h4>
+            <input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-      <br />
+          <div className="form-group">
+            <h4>Phone</h4>
+            <input
+              placeholder="Phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
 
-      <Link to="/suppliers">
-        <button>⬅ Back</button>
-      </Link>
+          <div className="form-actions">
+            <button type="submit">💾 Update Supplier</button>
+          </div>
+
+          <div className="navigation-section">
+            <Link to="/suppliers">
+              <button type="button">⬅ Back to Suppliers</button>
+            </Link>
+          </div>
+
+        </form>
+      </div>
     </div>
   );
 }

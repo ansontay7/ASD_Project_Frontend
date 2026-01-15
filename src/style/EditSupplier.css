@@ -1,0 +1,126 @@
+/* Page background */
+.edit-supplier-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f4f5f7;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Main container */
+.edit-supplier-container {
+  max-width: 600px;
+  width: 100%;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+}
+
+/* Header */
+.edit-supplier-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.edit-supplier-header h2 {
+  color: #111827;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Form wrapper */
+.edit-supplier-form {
+  width: 100%;
+}
+
+/* Form groups */
+.edit-supplier-form .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.edit-supplier-form h4 {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Inputs */
+.edit-supplier-form input {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-supplier-form input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Submit button */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 12px 26px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.1s ease;
+}
+
+.form-actions button:hover {
+  background-color: #059669;
+  transform: translateY(-1px);
+}
+
+/* Navigation section */
+.navigation-section {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.navigation-section button {
+  background: transparent;
+  border: 1px solid #cbd5e1;
+  color: #374151;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navigation-section button:hover {
+  background-color: #f3f4f6;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .edit-supplier-container {
+    padding: 20px;
+    margin: 0 15px;
+  }
+
+  .edit-supplier-header h2 {
+    font-size: 22px;
+  }
+}
