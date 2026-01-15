@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../auth/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../style/Login.css";
 import logo from "../assets/logo.png";
 
@@ -73,6 +73,10 @@ export default function Login() {
 
             <button type="submit" disabled={isDisabled}>{loading ? "Logging in..." : "Login"}</button>
           </form>
+
+          <div style={{ marginTop: "10px", fontSize: "0.9rem", textAlign: "center" }}>
+            Don’t have an account? <Link to="/register">Register</Link>
+          </div>
         </div>
       </div>
     </div>

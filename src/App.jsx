@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Inventory from "./pages/Inventory";
@@ -23,6 +24,7 @@ function App() {
   <div>
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>}/>
       <Route path="/inventory" element={<ProtectedRoute> <Inventory /> </ProtectedRoute>} />
       <Route path="/inventory/edit/:id" element={<ProtectedRoute role="Admin"> <InventoryEdit /> </ProtectedRoute>} />
