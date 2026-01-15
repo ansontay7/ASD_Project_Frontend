@@ -163,16 +163,20 @@
 
   /* Hide menu by default */
   .navbar-right {
-    display: none;
+    overflow: hidden; /* important for animation */
+    max-height: 0; /* collapsed */
     width: 100%;
     flex-direction: column;
     background-color: #1f2933;
     margin-top: 10px;
+    transition: max-height 0.7s ease-in-out, opacity 0.7s ease-in-out;
+    opacity: 0;
   }
 
-  /* Show when open */
+  /* Show menu when open */
   .navbar-right.open {
-    display: flex;
+    max-height: 500px; /* adjust if you have more items */
+    opacity: 1;
   }
 
   .nav-link,
