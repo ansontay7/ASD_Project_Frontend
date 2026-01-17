@@ -19,6 +19,14 @@ export default function Login() {
     }
   }, [user, navigate]);
 
+  useEffect(() => {
+    document.body.classList.add("login-body");
+
+    return () => {
+      document.body.classList.remove("login-body");
+    };
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +42,7 @@ export default function Login() {
       await login(email, password);
       alert("Login success");
     } catch {
-      setError("Invalid credentials");
+      setError("Invalid Email or Password");
     } finally {
       setLoading(false);
     }

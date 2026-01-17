@@ -36,6 +36,7 @@
   font-size: 26px;
   font-weight: 600;
   margin: 0;
+  animation: fadeSlideIn 0.7s ease;
 }
 
 .stock-out-form {
@@ -63,7 +64,13 @@
   border-radius: 5px;
   border: 1px solid #cbd5e1;
   outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.stock-out-form input:hover,
+.stock-out-form select:hover,
+.stock-out-form textarea:hover {
+  transform: translateY(-1px);
 }
 
 .stock-out-form input:focus,
@@ -87,12 +94,17 @@
   font-weight: 500;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.1s ease;
+  transition: background-color 0.25s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .form-actions button:hover {
   background-color: #059669;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.form-actions button:active {
+  transform: scale(0.96);
 }
 
 .navigation-section {
@@ -108,11 +120,59 @@
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .navigation-section button:hover {
   background-color: #f3f4f6;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-section button:active {
+  transform: scale(0.97);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stock-out-container {
+  animation: fadeSlideIn 0.6s ease;
+}
+
+@keyframes staggerFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stock-out-form .form-group {
+  animation: staggerFade 0.5s ease forwards;
+}
+
+.stock-out-form .form-group:nth-child(1) { animation-delay: 0.05s; }
+.stock-out-form .form-group:nth-child(2) { animation-delay: 0.1s; }
+.stock-out-form .form-group:nth-child(3) { animation-delay: 0.15s; }
+.stock-out-form .form-group:nth-child(4) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ============================= */

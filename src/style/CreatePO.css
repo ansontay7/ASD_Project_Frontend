@@ -7,6 +7,7 @@
   background-color: #f4f5f7;
   padding-top: 80px;
   padding-bottom: 40px;
+  animation: fadeSlideIn 0.6s ease forwards;
 }
 
 .create-po-container {
@@ -30,12 +31,20 @@
   font-size: 26px;
   font-weight: 600;
   margin: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeSlideIn 0.7s ease forwards;
+  animation-delay: 0.2s;
 }
 
 /* Navigation */
 .navigation-section {
   text-align: center;
   margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .navigation-section button {
@@ -56,6 +65,10 @@
 /* Supplier section */
 .supplier-section {
   margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.4s;
 }
 
 .supplier-section select {
@@ -87,7 +100,15 @@
   border-radius: 8px;
   padding: 18px;
   margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
 }
+
+.item-card:nth-child(1) { animation-delay: 0.5s; }
+.item-card:nth-child(2) { animation-delay: 0.6s; }
+.item-card:nth-child(3) { animation-delay: 0.7s; }
+.item-card:nth-child(4) { animation-delay: 0.8s; }
 
 .item-card .form-group {
   display: flex;
@@ -133,10 +154,16 @@
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.9s;
 }
 
 .remove-item-btn:hover {
   background-color: #fee2e2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.2);
 }
 
 /* Action buttons */
@@ -155,11 +182,16 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.1s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.9s;
 }
 
 .actions-section button:hover {
   background-color: #059669;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.2);
 }
 
 /* Submit section */
@@ -178,11 +210,40 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.25s ease, transform 0.1s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.9s;
 }
 
 .submit-section button:hover {
   background-color: #2563eb;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.2);
+}
+
+.actions-section button:active,
+.submit-section button:active,
+.remove-item-btn:active {
+  transform: scale(0.97);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* ============================= */

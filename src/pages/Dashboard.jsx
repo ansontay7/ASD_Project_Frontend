@@ -15,9 +15,18 @@ export default function Dashboard() {
   const [error, setError] = useState(null);
   const { user } = useAuth();
   const [pieType, setPieType] = useState("value"); // "value" or "quantity"
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     fetchDashboardData();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // updates every second
+
+    return () => clearInterval(timer);
   }, []);
 
   const fetchDashboardData = async () => {
@@ -102,6 +111,14 @@ export default function Dashboard() {
     <div className="dashboard-page">
       <h2 className="dashboard-title">Dashboard</h2>
 
+      <p className="dashboard-timestamp">
+        {currentTime.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+        })} — {currentTime.toLocaleTimeString()}
+      </p>
+
       {/* Stats */}
       <div className="dashboard-stats">
         <div className="dashboard-stat-box">
@@ -171,7 +188,7 @@ export default function Dashboard() {
       </div>
 
       {/* Recent Stock Movements */}
-      <div className="dashboard-lowstock-alert">
+      <div className="dashboard-stock-movements">
         <h3>🕒 Recent Stock Movements (Last 10)</h3>
         <table className="dashboard-table">
           <thead>

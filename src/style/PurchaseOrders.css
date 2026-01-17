@@ -24,6 +24,10 @@
   font-size: 1.8rem;
   font-weight: 600;
   color: #111827;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeSlideIn 0.7s ease forwards;
+  animation-delay: 0.2s
 }
 
 /* Header buttons */
@@ -42,10 +46,13 @@
   transition: all 0.2s ease;
   background-color: #10b981;
   color: white;
+  transition: all 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .purchase-orders-buttons button:hover {
   opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.2);
 }
 
 /* Filters */
@@ -55,6 +62,10 @@
   margin-bottom: 1rem;
   width: 100%;
   max-width: 1200px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.3s;
 }
 
 .purchase-orders-filters select,
@@ -81,6 +92,10 @@
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeSlideIn 0.6s ease forwards;
+  animation-delay: 0.5s;
 }
 
 /* Table */
@@ -103,8 +118,13 @@
   color: #1f2937;
 }
 
+.purchase-orders-table tr {
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
 .purchase-orders-table tr:hover {
   background-color: #f9fafb;
+  transform: translateY(-1px);
 }
 
 .purchase-orders-table td {
@@ -122,10 +142,40 @@
   background-color: #3b82f6;
   color: white;
   margin-right: 5px;
+  transition: all 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .purchase-orders-table button:hover {
   background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.2);
+}
+
+.purchase-orders-buttons button:active,
+.purchase-orders-table button:active {
+  transform: scale(0.97);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.purchase-orders-page {
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* Responsive */

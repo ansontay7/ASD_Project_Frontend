@@ -31,6 +31,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  animation: fadeSlideDown 0.6s ease forwards;
 }
 
 /* Logo */
@@ -38,6 +39,9 @@
   display: flex;
   justify-content: center;
   margin-bottom: 1px;
+  opacity: 0;
+  animation: fadeSlideDown 0.6s ease forwards;
+  animation-delay: 0.1s;
 }
 
 .login-logo img {
@@ -51,6 +55,9 @@
   margin-bottom: 25px;
   font-size: 22px;
   color: #222;
+  opacity: 0;
+  animation: fadeSlideDown 0.6s ease forwards;
+  animation-delay: 0.2s;
 }
 
 /* Form */
@@ -67,6 +74,8 @@
   border-radius: 6px;
   border: 1px solid #ccc;
   outline: none;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
 }
 
 .login-form input:focus {
@@ -84,6 +93,8 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.2s ease;
+  opacity: 0;
+  animation: fadeSlideUp 0.5s ease forwards;
 }
 
 .login-form button:hover {
@@ -95,6 +106,10 @@
   cursor: not-allowed;
 }
 
+.login-form input:nth-child(1) { animation-delay: 0.3s; }
+.login-form input:nth-child(2) { animation-delay: 0.4s; }
+.login-form button { animation-delay: 0.5s; }
+
 /* Error message */
 .login-error {
   color: #dc2626; /* red color */
@@ -105,6 +120,39 @@
   margin: 8px 0;
   font-size: 0.9rem;
   text-align: left;
+  opacity: 0;
+  animation: fadeSlideDown 0.4s ease forwards;
+}
+
+/* Fade and slide from top */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade and slide from bottom (for buttons) */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 /* =========================

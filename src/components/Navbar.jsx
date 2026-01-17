@@ -28,6 +28,10 @@ export default function Navbar() {
       {/* Right side: Navigation links */}
       {user && (
         <div className={`navbar-right ${menuOpen ? "open" : ""}`}>
+          <div className="navbar-user-info">
+            <span className="navbar-user-name">{user.name}</span>
+            <span className="navbar-user-role">{user.role}</span>
+          </div>
           <Link to="/dashboard" className="nav-link" onClick={() => setMenuOpen(false)}>Dashboard</Link>
           <Link to="/inventory" className="nav-link" onClick={() => setMenuOpen(false)}>Inventory</Link>
           <Link to="/stock-out" className="nav-link" onClick={() => setMenuOpen(false)}>Stock OUT</Link>
