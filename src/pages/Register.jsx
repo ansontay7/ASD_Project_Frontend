@@ -45,7 +45,7 @@ export default function Register() {
         token: data.token,
         user_id: data.user_id,
         role: data.role,
-        name,
+        name: data.name,
       });
 
       navigate("/dashboard"); // redirect after successful registration
