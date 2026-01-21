@@ -31,7 +31,7 @@ export default function StockOut() {
     e.preventDefault();
 
     if (!itemId || !qty || !user?.user_id) {
-      alert("Please fill all fields and ensure you are logged in.");
+      alert("Please fill all fields.");
       return;
     }
 
