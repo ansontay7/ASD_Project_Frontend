@@ -180,6 +180,13 @@
   box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
 }
 
+.dashboard-lowstock-alert,
+.dashboard-stock-movements,
+.dashboard-chart-scroll {
+  -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
+  will-change: transform, scroll-position; /* optimize repaint */
+}
+
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
@@ -266,6 +273,14 @@
   }
 }
 
+  .dashboard-title,
+  .dashboard-stats,
+  .dashboard-lowstock-alert,
+  .dashboard-chart-container,
+  .dashboard-piechart-container {
+    animation: none !important;
+  }
+
 /* =================== */
 /* Mobile view (up to 768px) */
 /* =================== */
@@ -351,5 +366,21 @@
   .dashboard-piechart-container {
     width: 80%;
     max-width: 700px;
+  }
+
+  .dashboard-stock-movements {
+    overflow-x: auto; /* enable horizontal scroll */
+    -webkit-overflow-scrolling: touch; /* smooth scroll for iOS */
+  }
+
+  .dashboard-stock-movements .dashboard-table {
+    min-width: 600px; /* keep all 4 columns visible */
+  }
+
+  .dashboard-stock-movements .dashboard-table th,
+  .dashboard-stock-movements .dashboard-table td {
+    white-space: nowrap; /* prevent text from wrapping */
+    text-overflow: ellipsis; /* show ... if too long */
+    overflow: hidden;
   }
 }
