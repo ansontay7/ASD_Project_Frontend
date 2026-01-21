@@ -8,6 +8,7 @@ export default function EditSupplier() {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
+  const [contactPerson, setContactPerson] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
@@ -19,6 +20,7 @@ export default function EditSupplier() {
     try {
       const res = await api.get(`/suppliers/${id}`);
       setName(res.data.supplier_name);
+      setContactPerson(res.data.contact_person || "");
       setEmail(res.data.email || "");
       setPhone(res.data.phone || "");
     } catch {
@@ -32,6 +34,7 @@ export default function EditSupplier() {
     try {
       await api.put(`/suppliers/${id}`, {
         supplier_name: name,
+        contact_person: contactPerson,
         email,
         phone,
       });
@@ -59,6 +62,15 @@ export default function EditSupplier() {
               placeholder="Supplier Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className="form-group">
+            <h4>Contact Person</h4>
+            <input
+              placeholder="Contact Person"
+              value={contactPerson}
+              onChange={(e) => setContactPerson(e.target.value)}
             />
           </div>
 

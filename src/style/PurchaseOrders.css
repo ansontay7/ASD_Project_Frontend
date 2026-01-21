@@ -88,6 +88,8 @@
 .purchase-orders-table {
   width: 100%;
   max-width: 1200px;
+  max-height: 600px;
+  overflow-y: auto;
   overflow-x: auto;
   background: white;
   border-radius: 8px;
@@ -96,6 +98,12 @@
   transform: translateY(15px);
   animation: fadeSlideIn 0.6s ease forwards;
   animation-delay: 0.5s;
+}
+
+.purchase-orders-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 /* Table */

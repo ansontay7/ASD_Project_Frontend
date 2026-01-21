@@ -80,6 +80,8 @@
 .table-card {
   width: 100%;
   max-width: 1200px;
+  max-height: 600px;
+  overflow-y: auto;
   overflow-x: auto;
   background: white;
   border-radius: 8px;
@@ -96,6 +98,12 @@
   border-collapse: collapse;
   font-size: 0.95rem;
   
+}
+
+.table-card thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
 }
 
 .table-card th,

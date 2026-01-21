@@ -71,6 +71,10 @@
   animation-delay: 0.2s;
 }
 
+.dashboard-stock-movements {
+  overflow: hidden;
+}
+
 .dashboard-table {
   width: 100%;
   border-collapse: collapse;
@@ -144,6 +148,18 @@
 .dashboard-piechart-container:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* Scrollable bar chart */
+.dashboard-chart-scroll {
+  width: 100%;
+  max-width: 1200px;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.dashboard-chart-container.wide {
+  height: 420px;
 }
 
 .dashboard-select {
@@ -227,6 +243,16 @@
     max-width: 700px;
     padding: 16px;
   }
+
+  .dashboard-chart-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .dashboard-chart-container {
+    min-width: 900px; /* ~7–8 bars */
+    height: 380px;
+  }
   
   .dashboard-lowstock-alert {
     max-width: 900px;
@@ -288,6 +314,25 @@
     max-width: 100%;
     padding: 15px;
     margin-top: 30px;
+  }
+
+  .dashboard-chart-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .dashboard-chart-container {
+    min-width: 700px; /* ~4–5 bars */
+    height: 320px;
+  }
+
+  .dashboard-chart-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .dashboard-chart-scroll::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
   }
 
   .dashboard-select {

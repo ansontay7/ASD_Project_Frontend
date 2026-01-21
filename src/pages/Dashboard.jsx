@@ -55,6 +55,7 @@ export default function Dashboard() {
   const lowStockItems = inventory.filter(item => item.quantity < item.reorder_level);
   const totalInventoryValue = inventory.reduce((sum, item) => sum + item.quantity * item.unit_price, 0);
   const totalItems = inventory.length;
+  const safeTransactions = transactions.slice(0, 10);
 
   // Bar chart for stock by item
   const barData = {
@@ -165,9 +166,12 @@ export default function Dashboard() {
       )}
 
       {/* Bar Chart */}
-      <div className="dashboard-chart-container">
-        <h3>Stock by Item</h3>
-        <Bar data={barData} options={{ responsive: true, plugins: { legend: { position: "top" } } }} />
+      <div className="dashboard-chart-scroll">
+        <div className="dashboard-chart-container wide" style={{ minWidth: `${inventory.length * 100}px` }}>
+          <h3>Stock by Item</h3>
+          <Bar data={barData} options={{ responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "top" }, },
+          scales: { x: { ticks: { autoSkip: false, maxRotation: 45, minRotation: 45, }, },},}} />
+        </div>
       </div>
 
       {/* Pie Chart with dropdown */}
@@ -200,12 +204,12 @@ export default function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {transactions.length === 0 ? (
+            {safeTransactions.length === 0 ? (
               <tr>
                 <td colSpan="4" align="center">No recent transactions</td>
               </tr>
             ) : (
-              transactions.map(tx => (
+              safeTransactions.map(tx => (
                 <tr key={tx.transaction_id}>
                   <td>{new Date(tx.created_at).toLocaleString()}</td>
                   <td>{tx.item_name}</td>
