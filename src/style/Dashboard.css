@@ -209,6 +209,12 @@
   animation: pulseRed 2.5s infinite;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 
 /* =================== */
 /* Tablet view (769px–1024px) */
